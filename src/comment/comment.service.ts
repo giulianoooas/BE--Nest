@@ -11,7 +11,7 @@ export class CommentService {
     private readonly commentRepository: Repository<CommentCar>,
   ) {}
 
-  public async getCommentsByCarId(carId: string): Promise<CommentCar[]> {
+  public async getCommentsByCarId(carId: number): Promise<CommentCar[]> {
     return await this.commentRepository.find({
       where: {
         carId,
