@@ -6,6 +6,7 @@ import {
   Inject,
   Param,
   Post,
+  Put,
 } from '@nestjs/common';
 import { Car } from 'src/entities/car.entity';
 import { Category } from 'src/entities/category.entity';
@@ -36,11 +37,8 @@ export class CategoryController {
     return this.categoryService.deleteCategory(categoryId);
   }
 
-  @Post(':categoryId/edit')
-  public editCategory(
-    @Body() category: Category,
-    @Param('categoryId') categoryId: number,
-  ): Promise<Category> {
+  @Put(':categoryId/edit')
+  public editCategory(@Body() category: Category): Promise<Category> {
     return this.categoryService.createUpdateCategory(category);
   }
 
