@@ -14,7 +14,7 @@ export class CategoryService {
     private readonly carRepository: Repository<Car>,
   ) {}
 
-  public async getAllCategory(): Promise<Category[]> {
+  public async getAllCategories(): Promise<Category[]> {
     return await this.categoryRepository.find();
   }
 
