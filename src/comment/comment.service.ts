@@ -12,28 +12,36 @@ export class CommentService {
   ) {}
 
   public async getCommentsByCarId(carId: number): Promise<CommentCar[]> {
-    return await this.commentRepository.find({
-      where: {
-        carId,
-      },
-    });
+    try {
+      return await this.commentRepository.find({
+        where: {
+          carId,
+        },
+      });
+    } catch (error) {}
   }
 
   public async deleteComment(commentId: number): Promise<boolean> {
-    const comment = await this.commentRepository.findOne(commentId);
-    if (comment) {
-      await this.commentRepository.remove(comment);
-      return true;
+    try {
+      const comment = await this.commentRepository.findOne(commentId);
+      if (comment) {
+        await this.commentRepository.remove(comment);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      return false;
     }
-    return false;
   }
 
   public async createUpdateComment(comment: CommentDTO): Promise<CommentCar> {
-    return await this.commentRepository.save({
-      commentId: comment?.commentId,
-      carId: comment.carId,
-      message: comment.message,
-      date: comment.date.toString(),
-    });
+    try {
+      return await this.commentRepository.save({
+        commentId: comment?.commentId,
+        carId: comment.carId,
+        message: comment.message,
+        date: comment.date.toString(),
+      });
+    } catch (error) {}
   }
 }

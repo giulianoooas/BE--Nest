@@ -20,30 +20,41 @@ export class CarService {
   public async getCarById(
     carId: number,
   ): Promise<{ car: Car; categoryName: string }> {
-    const car = await this.carRepository.findOne(carId);
-    const categoryName = (await this.categoryRepository.findOne(car.categoryId))
-      .name;
-    return {
-      car,
-      categoryName,
-    };
+    try {
+      const car = await this.carRepository.findOne(carId);
+      const categoryName = (
+        await this.categoryRepository.findOne(car.categoryId)
+      ).name;
+      return {
+        car,
+        categoryName,
+      };
+    } catch (error) {}
   }
 
   public async existsCar(carId: number): Promise<boolean> {
-    return !!(await this.carRepository.findOne(carId));
+    try {
+      return !!(await this.carRepository.findOne(carId));
+    } catch (error) {}
   }
 
   public async getCategoryName(carId: number): Promise<string> {
-    const car = await this.carRepository.findOne(carId);
-    return (await this.categoryRepository.findOne(car.categoryId)).name;
+    try {
+      const car = await this.carRepository.findOne(carId);
+      return (await this.categoryRepository.findOne(car.categoryId)).name;
+    } catch (error) {}
   }
 
   public async deleteCar(carId: number): Promise<void> {
-    const car = await this.carRepository.findOne(carId);
-    await this.carRepository.delete(car);
+    try {
+      const car = await this.carRepository.findOne(carId);
+      await this.carRepository.delete(car);
+    } catch (error) {}
   }
 
   public async createUpdateCar(car: CarDTO): Promise<Car> {
-    return await this.carRepository.save(car);
+    try {
+      return await this.carRepository.save(car);
+    } catch (error) {}
   }
 }

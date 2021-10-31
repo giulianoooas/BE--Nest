@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { HttpErrorByCode } from '@nestjs/common/utils/http-error-by-code.util';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CategoryDTO } from 'src/dto/category.dto';
 import { Car } from 'src/entities/car.entity';
@@ -15,24 +16,32 @@ export class CategoryService {
   ) {}
 
   public async getAllCategories(): Promise<Category[]> {
-    return await this.categoryRepository.find();
+    try {
+      return await this.categoryRepository.find();
+    } catch (error) {}
   }
 
   public async getAllCarOfCategory(categoryId: number): Promise<Car[]> {
-    return await this.carRepository.find({
-      where: {
-        categoryId,
-      },
-    });
+    try {
+      return await this.carRepository.find({
+        where: {
+          categoryId,
+        },
+      });
+    } catch (error) {}
   }
 
   public async deleteCategory(categoryId: number): Promise<Category[]> {
-    const category = await this.categoryRepository.findOne(categoryId);
-    await this.categoryRepository.remove(category);
-    return await this.categoryRepository.find();
+    try {
+      const category = await this.categoryRepository.findOne(categoryId);
+      await this.categoryRepository.remove(category);
+      return await this.categoryRepository.find();
+    } catch (error) {}
   }
 
   public async createUpdateCategory(category: CategoryDTO): Promise<Category> {
-    return await this.categoryRepository.save(category);
+    try {
+      return await this.categoryRepository.save(category);
+    } catch (error) {}
   }
 }
