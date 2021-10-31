@@ -1,30 +1,33 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { CarModule } from './car/car.module';
 import { CategoryModule } from './category/category.module';
 import { CommentModule } from './comment/comment.module';
+import { Car } from './entities/car.entity';
+import { Category } from './entities/category.entity';
+import { CommentCar } from './entities/comment.entity';
 
 @Module({
   imports: [
     CarModule,
     CategoryModule,
     CommentModule,
+    TypeOrmModule.forFeature([Car, Category, CommentCar]),
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.POSTGRES_HOST,
-      port: parseInt(<string>process.env.POSTGRES_PORT),
-      username: process.env.POSTGRES_USERNAME,
-      password: process.env.POSTGRES_PASSWORD,
-      database: process.env.POSTGRES_DATABASE,
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: '1234',
+      database: 'postgres',
       autoLoadEntities: true,
       synchronize: true,
+      entities: ['dist/**/*.entity{.ts,.js}'],
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: []
 })
 export class AppModule {}
