@@ -31,7 +31,7 @@ export class CommentController {
     return this.commentService.createUpdateComment(comment);
   }
 
-  @Delete(':commentId')
+  @Delete(':commentId/delete')
   public deleteComment(
     @Param('commentId') commentId: number,
   ): Promise<boolean> {
