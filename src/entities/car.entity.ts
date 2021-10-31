@@ -27,7 +27,7 @@ export class Car {
   imageUrl: string;
 
   @Column()
-  categoryId: string;
+  categoryId: number;
 
   @OneToOne((type) => Category, (category) => category.cars)
   category: Category;
