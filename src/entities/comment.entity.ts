@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Car } from './car.entity';
 
 @Entity('comments') 
@@ -16,6 +16,6 @@ export class CommentCar {
   @Column()
   date: string;
 
-  @OneToOne(() => Car, car=> car.comments)
+  @ManyToOne(() => Car, car=> car.comments, { cascade: true, onDelete: 'CASCADE' })
   car: Car;
 }

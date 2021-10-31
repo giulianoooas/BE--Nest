@@ -3,7 +3,7 @@ import {
   Column,
   Entity,
   ManyToOne,
-  OneToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Category } from './category.entity';
@@ -29,9 +29,9 @@ export class Car {
   @Column()
   categoryId: number;
 
-  @OneToOne(() => Category, (category) => category.cars)
+  @ManyToOne(() => Category, (category) => category.cars, { cascade: true, onDelete: 'CASCADE' })
   category: Category;
 
-  @ManyToOne(() => CommentCar, (comment) => comment.car,  { cascade: true, onDelete: 'CASCADE' })
+  @OneToMany(() => CommentCar, (comment) => comment.car)
   comments: CommentCar[];
 }
