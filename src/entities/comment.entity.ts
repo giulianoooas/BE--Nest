@@ -16,6 +16,6 @@ export class CommentCar {
   @Column()
   date: string;
 
-  @OneToOne(type => Car, car=> car.comments)
+  @OneToOne(() => Car, car=> car.comments)
   car: Car;
 }

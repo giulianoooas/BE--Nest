@@ -29,9 +29,9 @@ export class Car {
   @Column()
   categoryId: number;
 
-  @OneToOne((type) => Category, (category) => category.cars)
+  @OneToOne(() => Category, (category) => category.cars)
   category: Category;
 
-  @ManyToOne((type) => CommentCar, (comment) => comment.car)
+  @ManyToOne(() => CommentCar, (comment) => comment.car,  { cascade: true, onDelete: 'CASCADE' })
   comments: CommentCar[];
 }

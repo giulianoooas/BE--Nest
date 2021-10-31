@@ -10,8 +10,6 @@ export class Category {
   @Column()
   name: string;
 
-  @OneToMany((type) => Car, (car) => car.category, {
-    cascade: ['remove', 'update'],
-  })
+  @OneToMany(() => Car, (car) => car.category, { cascade: true, onDelete: 'CASCADE' })
   cars: Car[];
 }
