@@ -12,6 +12,9 @@ export class CommentCar {
   @Column()
   carId: number;
 
+  @Column()
+  date: string;
+
   @OneToOne(type => Car, car=> car.comments)
   car: Car;
 }
