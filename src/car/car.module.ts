@@ -9,5 +9,6 @@ import { CarService } from './car.service';
   imports: [TypeOrmModule.forFeature([Car, Category])],
   controllers: [CarController],
   providers: [CarService],
+  exports: [CarService],
 })
 export class CarModule {}

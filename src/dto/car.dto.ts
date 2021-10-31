@@ -1,14 +1,8 @@
-export class CarDTO {
-   carId: string;
-
-   name: string;
-
-   price: number;
-
+export interface CarDTO {
+  carId?: string;
+  name: string;
+  price: number;
   description: string;
-
   imageUrl: string;
-
   categoryId: string;
-
 }

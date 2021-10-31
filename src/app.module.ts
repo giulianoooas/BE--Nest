@@ -28,6 +28,6 @@ import { CommentCar } from './entities/comment.entity';
     }),
   ],
   controllers: [],
-  providers: []
+  providers: [],
 })
 export class AppModule {}
