@@ -16,6 +16,6 @@ export class CommentCar {
   @Column()
   date: string;
 
-  @ManyToOne(() => Car, car=> car.comments, { cascade: true, onDelete: 'CASCADE' })
+  @ManyToOne(() => Car, car=> car.comments, { cascade: true })
   car: Car;
 }
