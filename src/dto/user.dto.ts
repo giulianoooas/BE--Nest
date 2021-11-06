@@ -5,4 +5,5 @@ export interface UserDTO{
     lastName?: string;
     password: string;
     email: string;
+    isAdmin?: boolean;
 }
