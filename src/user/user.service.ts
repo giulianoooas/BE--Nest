@@ -23,7 +23,7 @@ export class UserService {
   public async login(userLogin: {
     email: string;
     password: string;
-  }): Promise<User | null> {
+  }): Promise<User> {
     const users = await this.userRepository.find();
     for (const user of users) {
       if (

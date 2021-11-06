@@ -21,7 +21,7 @@ export class UserController {
   @Post('login')
   public async getConnection(
     @Body() user: { email: string; password: string },
-  ): Promise<User | null> {
+  ): Promise<User> {
     return this.userService.login(user);
   }
 
