@@ -10,12 +10,6 @@ export class User{
     isAdmin: boolean;
 
     @Column()
-    firstName: string;
-
-    @Column({nullable: true})
-    lastName: string;
-
-    @Column()
     email: string;
 
     @Column()
