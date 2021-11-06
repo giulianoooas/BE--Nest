@@ -4,4 +4,5 @@ export interface CommentDTO {
   date: Date;
   carId: number;
   message: string;
+  userId: number;
 }

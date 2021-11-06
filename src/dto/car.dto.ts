@@ -6,4 +6,5 @@ export interface CarDTO {
   description: string;
   imageUrl: string;
   categoryId: number;
+  userId: number;
 }

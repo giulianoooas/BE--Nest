@@ -18,4 +18,7 @@ export class CommentCar {
 
   @ManyToOne(() => Car, car=> car.comments, { cascade: true })
   car: Car;
+
+  @Column()
+  userId: number;
 }

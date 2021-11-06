@@ -12,4 +12,7 @@ export class Category {
 
   @OneToMany(() => Car, (car) => car.category, { onDelete: 'CASCADE'})
   cars: Car[];
+
+  @Column()
+  userId: number;
 }

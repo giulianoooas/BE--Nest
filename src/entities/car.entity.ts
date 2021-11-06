@@ -34,4 +34,7 @@ export class Car {
 
   @OneToMany(() => CommentCar, (comment) => comment.car, {  onDelete: 'CASCADE' })
   comments: CommentCar[];
+
+  @Column()
+  userId: number;
 }
