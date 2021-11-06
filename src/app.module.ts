@@ -7,6 +7,7 @@ import { CommentModule } from './comment/comment.module';
 import { Car } from './entities/car.entity';
 import { Category } from './entities/category.entity';
 import { CommentCar } from './entities/comment.entity';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { CommentCar } from './entities/comment.entity';
       synchronize: true,
       entities: ['dist/**/*.entity{.ts,.js}'],
     }),
+    UserModule,
   ],
   controllers: [],
   providers: [],
