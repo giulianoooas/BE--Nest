@@ -18,20 +18,20 @@ export class UserController {
     @Inject(UserService) private readonly userService: UserService,
   ) {}
 
-  @Post('login')
+  @Get('login')
   public async getConnection(
     @Body() user: { email: string; password: string },
-  ): Promise<User> {
+  ): Promise<User | null> {
     return this.userService.login(user);
   }
 
   @Post()
-  public async createUser(@Body() user: UserDTO): Promise<User> {
+  public async createUser(@Body() user: UserDTO): Promise<User | null> {
     return this.userService.createUpdateUser(user);
   }
 
   @Put(':userId')
-  public async updateUser(@Body() user: UserDTO): Promise<User> {
+  public async updateUser(@Body() user: UserDTO): Promise<User | null> {
     return this.userService.createUpdateUser(user);
   }
 

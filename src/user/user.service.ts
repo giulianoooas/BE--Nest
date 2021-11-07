@@ -10,8 +10,14 @@ export class UserService {
     @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) {}
 
-  public async createUpdateUser(userDTO: UserDTO): Promise<User> {
+  public async createUpdateUser(userDTO: UserDTO): Promise<User | null> {
     try {
+      const users = await this.userRepository.find();
+      for (const user of users) {
+        if (user.email === userDTO.email) {
+          return null;
+        }
+      }
       return await this.userRepository.save(userDTO);
     } catch (error) {}
   }
@@ -23,7 +29,7 @@ export class UserService {
   public async login(userLogin: {
     email: string;
     password: string;
-  }): Promise<User> {
+  }): Promise<User | null> {
     const users = await this.userRepository.find();
     for (const user of users) {
       if (
