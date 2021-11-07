@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CommentDTO } from 'src/dto/comment.dto';
@@ -41,6 +42,7 @@ export class CommentService {
         carId: comment.carId,
         message: comment.message,
         date: comment.date.toString(),
+        userId: comment.userId,
       });
     } catch (error) {}
   }

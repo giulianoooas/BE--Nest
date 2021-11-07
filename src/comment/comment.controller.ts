@@ -28,6 +28,9 @@ export class CommentController {
 
   @Post()
   public async createComment(@Body() comment: CommentDTO): Promise<CommentCar> {
+    if (comment.commentId < 0) {
+      delete comment.commentId;
+    }
     return this.commentService.createUpdateComment(comment);
   }
 
