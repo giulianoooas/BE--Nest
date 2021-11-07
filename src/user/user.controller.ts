@@ -18,7 +18,7 @@ export class UserController {
     @Inject(UserService) private readonly userService: UserService,
   ) {}
 
-  @Get('login')
+  @Post('login')
   public async getConnection(
     @Body() user: { email: string; password: string },
   ): Promise<User | null> {
