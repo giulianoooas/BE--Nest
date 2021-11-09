@@ -27,6 +27,9 @@ export class Book {
   imageUrl: string;
 
   @Column()
+  author: string;
+
+  @Column()
   categoryId: number;
 
   @ManyToOne(() => Category, (category) => category.books, { cascade: true })

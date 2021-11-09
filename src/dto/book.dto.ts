@@ -6,5 +6,6 @@ export interface BookDTO {
   description: string;
   imageUrl: string;
   categoryId: number;
+  author: string;
   userId: number;
 }
