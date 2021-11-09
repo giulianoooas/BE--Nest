@@ -9,7 +9,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { CommentDTO } from 'src/dto/comment.dto';
-import { CommentCar } from 'src/entities/comment.entity';
+import { CommentBook } from 'src/entities/comment.entity';
 import { CommentService } from './comment.service';
 
 @Controller('comments')
@@ -19,15 +19,15 @@ export class CommentController {
     private readonly commentService: CommentService,
   ) {}
 
-  @Get(':carId/car')
-  public async getCommentsByCarId(
-    @Param('carId') carId: number,
-  ): Promise<CommentCar[]> {
-    return this.commentService.getCommentsByCarId(carId);
+  @Get(':bookId/book')
+  public async getCommentsByBookId(
+    @Param('bookId') bookId: number,
+  ): Promise<CommentBook[]> {
+    return this.commentService.getCommentsByBookId(bookId);
   }
 
   @Post()
-  public async createComment(@Body() comment: CommentDTO): Promise<CommentCar> {
+  public async createComment(@Body() comment: CommentDTO): Promise<CommentBook> {
     if (comment.commentId < 0) {
       delete comment.commentId;
     }
@@ -42,7 +42,7 @@ export class CommentController {
   }
 
   @Put(':commentId/edit')
-  public editComment(@Body() comment: CommentDTO): Promise<CommentCar> {
+  public editComment(@Body() comment: CommentDTO): Promise<CommentBook> {
     return this.commentService.createUpdateComment(comment);
   }
 }

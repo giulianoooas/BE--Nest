@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Car } from './car.entity';
+import { Book } from './book.entity';
 
 @Entity('comments') 
-export class CommentCar {
+export class CommentBook {
   @PrimaryGeneratedColumn()
   commentId: number;
 
@@ -11,13 +11,13 @@ export class CommentCar {
   message: string;
 
   @Column()
-  carId: number;
+  bookId: number;
 
   @Column()
   date: string;
 
-  @ManyToOne(() => Car, car=> car.comments, { cascade: true })
-  car: Car;
+  @ManyToOne(() => Book, book=> book.comments, { cascade: true })
+  book: Book;
 
   @Column()
   userId: number;

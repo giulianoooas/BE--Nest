@@ -2,21 +2,21 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CommentDTO } from 'src/dto/comment.dto';
-import { CommentCar } from 'src/entities/comment.entity';
+import { CommentBook } from 'src/entities/comment.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class CommentService {
   public constructor(
-    @InjectRepository(CommentCar)
-    private readonly commentRepository: Repository<CommentCar>,
+    @InjectRepository(CommentBook)
+    private readonly commentRepository: Repository<CommentBook>,
   ) {}
 
-  public async getCommentsByCarId(carId: number): Promise<CommentCar[]> {
+  public async getCommentsByBookId(bookId: number): Promise<CommentBook[]> {
     try {
       return await this.commentRepository.find({
         where: {
-          carId,
+          bookId,
         },
       });
     } catch (error) {}
@@ -35,11 +35,11 @@ export class CommentService {
     }
   }
 
-  public async createUpdateComment(comment: CommentDTO): Promise<CommentCar> {
+  public async createUpdateComment(comment: CommentDTO): Promise<CommentBook> {
     try {
       return await this.commentRepository.save({
         commentId: comment?.commentId,
-        carId: comment.carId,
+        bookId: comment.bookId,
         message: comment.message,
         date: comment.date.toString(),
         userId: comment.userId,

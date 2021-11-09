@@ -1,20 +1,20 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CarModule } from './car/car.module';
+import { BookModule } from './book/book.module';
 import { CategoryModule } from './category/category.module';
 import { CommentModule } from './comment/comment.module';
-import { Car } from './entities/car.entity';
+import { Book } from './entities/book.entity';
 import { Category } from './entities/category.entity';
-import { CommentCar } from './entities/comment.entity';
+import { CommentBook } from './entities/comment.entity';
 import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
-    CarModule,
+    BookModule,
     CategoryModule,
     CommentModule,
-    TypeOrmModule.forFeature([Car, Category, CommentCar]),
+    TypeOrmModule.forFeature([Book, Category, CommentBook]),
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'postgres',

@@ -7,12 +7,12 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Category } from './category.entity';
-import { CommentCar } from './comment.entity';
+import { CommentBook } from './comment.entity';
 
-@Entity('cars')
-export class Car {
+@Entity('books')
+export class Book {
   @PrimaryGeneratedColumn('increment')
-  public carId: string;
+  public bookId: string;
 
   @Column()
   name: string;
@@ -29,11 +29,11 @@ export class Car {
   @Column()
   categoryId: number;
 
-  @ManyToOne(() => Category, (category) => category.cars, { cascade: true })
+  @ManyToOne(() => Category, (category) => category.books, { cascade: true })
   category: Category;
 
-  @OneToMany(() => CommentCar, (comment) => comment.car, {  onDelete: 'CASCADE' })
-  comments: CommentCar[];
+  @OneToMany(() => CommentBook, (comment) => comment.book, {  onDelete: 'CASCADE' })
+  comments: CommentBook[];
 
   @Column()
   userId: number;

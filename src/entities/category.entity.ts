@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Car } from './car.entity';
+import { Book } from './book.entity';
 
 @Entity('categories')
 export class Category {
@@ -10,8 +10,8 @@ export class Category {
   @Column()
   name: string;
 
-  @OneToMany(() => Car, (car) => car.category, { onDelete: 'CASCADE'})
-  cars: Car[];
+  @OneToMany(() => Book, (book) => book.category, { onDelete: 'CASCADE'})
+  books: Book[];
 
   @Column()
   userId: number;

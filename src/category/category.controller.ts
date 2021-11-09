@@ -8,7 +8,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { Car } from 'src/entities/car.entity';
+import { Book } from 'src/entities/book.entity';
 import { Category } from 'src/entities/category.entity';
 import { CategoryService } from './category.service';
 
@@ -23,11 +23,11 @@ export class CategoryController {
     return this.categoryService.getAllCategories();
   }
 
-  @Get(':categoryId/cars')
-  public async getAllCarOfCategory(
+  @Get(':categoryId/books')
+  public async getAllBookOfCategory(
     @Param('categoryId') categoryId: number,
-  ): Promise<Car[]> {
-    return this.categoryService.getAllCarOfCategory(categoryId);
+  ): Promise<Book[]> {
+    return this.categoryService.getAllBookOfCategory(categoryId);
   }
 
   @Delete(':categoryId/delete')
