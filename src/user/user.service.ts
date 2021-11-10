@@ -1,13 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../entities/user.entity';
 import { Repository } from 'typeorm';
 import { UserDTO } from '../dto/user.dto';
+import { OrderService } from 'src/order/order.service';
 
 @Injectable()
 export class UserService {
   public constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,
+    @Inject(OrderService) private readonly orderService: OrderService,
   ) {}
 
   public async createUpdateUser(userDTO: UserDTO): Promise<User | null> {
@@ -24,6 +26,7 @@ export class UserService {
 
   public async deleteUser(userId: number): Promise<void> {
     await this.userRepository.delete(userId);
+    await this.orderService.deleteAllUserOrders(userId);
   }
 
   public async login(userLogin: {

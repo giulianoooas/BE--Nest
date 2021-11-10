@@ -8,6 +8,7 @@ import { Book } from './entities/book.entity';
 import { Category } from './entities/category.entity';
 import { CommentBook } from './entities/comment.entity';
 import { UserModule } from './user/user.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { UserModule } from './user/user.module';
       entities: ['dist/**/*.entity{.ts,.js}'],
     }),
     UserModule,
+    OrderModule,
   ],
   controllers: [],
   providers: [],
