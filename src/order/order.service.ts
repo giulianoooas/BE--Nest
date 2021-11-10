@@ -61,11 +61,11 @@ export class OrderService {
   public async increaseOrderNumber(
     bookId: number,
     userId: number,
-  ): Promise<Order> {
+  ): Promise<void> {
     try {
       const order = await this.getOrder(bookId, userId);
       if (order) {
-        return await this.orderRepository.save({
+        await this.orderRepository.save({
           orderId: order.orderId,
           bookId: bookId,
           userId: userId,
@@ -73,7 +73,7 @@ export class OrderService {
           numberOfElements: order.numberOfElements + 1,
         });
       } else {
-        return await this.orderRepository.save({
+        await this.orderRepository.save({
           bookId: bookId,
           userId: userId,
           date: new Date().toString(),
