@@ -12,7 +12,7 @@ import { CommentBook } from './comment.entity';
 @Entity('books')
 export class Book {
   @PrimaryGeneratedColumn('increment')
-  public bookId: string;
+  public bookId: number;
 
   @Column()
   name: string;

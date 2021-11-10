@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 export interface BookDTO {
-  bookId?: string;
+  bookId?: number;
   name: string;
   price: number;
   description: string;

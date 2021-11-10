@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Book } from 'src/entities/book.entity';
-import { Category } from 'src/entities/category.entity';
-import { CommentBook } from 'src/entities/comment.entity';
-import { User } from 'src/entities/user.entity';
+import { Book } from '../entities/book.entity';
+import { Category } from '../entities/category.entity';
+import { CommentBook } from '../entities/comment.entity';
+import { User } from '../entities/user.entity';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 

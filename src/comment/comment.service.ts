@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CommentDTO } from 'src/dto/comment.dto';
-import { CommentBook } from 'src/entities/comment.entity';
+import { CommentDTO } from '../dto/comment.dto';
+import { CommentBook } from '../entities/comment.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -45,5 +45,18 @@ export class CommentService {
         userId: comment.userId,
       });
     } catch (error) {}
+  }
+
+  public async deleteAllCommentsOfBook(bookId: number): Promise<void>{
+    try{
+      const comments = await this.commentRepository.find({
+        where: {
+          bookId
+        }
+      })
+      for (const comment of comments){
+        await this.commentRepository.remove(comment);
+      }
+    } catch(error) {}
   }
 }

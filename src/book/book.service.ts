@@ -1,9 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BookDTO } from 'src/dto/book.dto';
-import { Book } from 'src/entities/book.entity';
-import { Category } from 'src/entities/category.entity';
+import { CommentService } from '../comment/comment.service';
+import { BookDTO } from '../dto/book.dto';
+import { Book } from '../entities/book.entity';
+import { Category } from '../entities/category.entity';
 import { Repository } from 'typeorm';
+import { OrderService } from '../order/order.service';
 
 @Injectable()
 export class BookService {
@@ -11,6 +13,8 @@ export class BookService {
     @InjectRepository(Book) private readonly bookRepository: Repository<Book>,
     @InjectRepository(Category)
     private readonly categoryRepository: Repository<Category>,
+    @Inject(CommentService) private readonly commentService: CommentService,
+    @Inject(OrderService) private readonly orderService: OrderService,
   ) {}
 
   public async getAllBooks(): Promise<Book[]> {
@@ -48,6 +52,8 @@ export class BookService {
   public async deleteBook(bookId: number): Promise<void> {
     try {
       const book = await this.bookRepository.findOne(bookId);
+      await this.orderService.deleteAllBookOrders(bookId);
+      await this.commentService.deleteAllCommentsOfBook(bookId);
       await this.bookRepository.delete(book);
     } catch (error) {}
   }

@@ -8,8 +8,8 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { Book } from 'src/entities/book.entity';
-import { Category } from 'src/entities/category.entity';
+import { Book } from '../entities/book.entity';
+import { Category } from '../entities/category.entity';
 import { CategoryService } from './category.service';
 
 @Controller('categories')

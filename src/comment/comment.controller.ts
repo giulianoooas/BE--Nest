@@ -8,8 +8,8 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { CommentDTO } from 'src/dto/comment.dto';
-import { CommentBook } from 'src/entities/comment.entity';
+import { CommentDTO } from '../dto/comment.dto';
+import { CommentBook } from '../entities/comment.entity';
 import { CommentService } from './comment.service';
 
 @Controller('comments')
@@ -27,7 +27,9 @@ export class CommentController {
   }
 
   @Post()
-  public async createComment(@Body() comment: CommentDTO): Promise<CommentBook> {
+  public async createComment(
+    @Body() comment: CommentDTO,
+  ): Promise<CommentBook> {
     if (comment.commentId < 0) {
       delete comment.commentId;
     }
