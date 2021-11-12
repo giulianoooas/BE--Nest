@@ -21,7 +21,7 @@ export class OrderService {
           userId: userId,
         },
       });
-      const res = [];
+      const res: OrderBook[] = [];
       for (const order of orders) {
         const book = await this.bookRepository.findOne({
           where: {
@@ -29,10 +29,11 @@ export class OrderService {
           },
         });
         res.push({
-          iamgeUrl: book.imageUrl,
+          imageUrl: book.imageUrl,
           date: order.date,
           numberOfElements: order.numberOfElements,
           name: book.name,
+          bookId: book.bookId,
         });
       }
       return res;
