@@ -4,5 +4,6 @@ export interface OrderBook{
     date: string,
     numberOfElements: number,
     name: string,
-    bookId: number
+    bookId: number,
+    author: string
 }

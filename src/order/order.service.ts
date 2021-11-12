@@ -34,6 +34,7 @@ export class OrderService {
           numberOfElements: order.numberOfElements,
           name: book.name,
           bookId: book.bookId,
+          author: book.author,
         });
       }
       return res;
