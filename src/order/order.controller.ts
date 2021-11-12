@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Inject, Param, Patch } from '@nestjs/common';
-import { Order } from '../entities/order.entity';
+import { OrderBook } from '../dto/order-book.dto';
 import { OrderService } from './order.service';
 
 @Controller('orders')
@@ -11,7 +11,7 @@ export class OrderController {
   @Get(':userId')
   public async getAllUserOrders(
     @Param('userId') userId: number,
-  ): Promise<Order[]> {
+  ): Promise<OrderBook[]> {
     return this.orderService.getAllUserOrders(userId);
   }
 

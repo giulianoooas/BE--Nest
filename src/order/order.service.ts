@@ -1,22 +1,41 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { OrderBook } from '../dto/order-book.dto';
 import { Repository } from 'typeorm';
 import { Order } from '../entities/order.entity';
+import { Book } from '../entities/book.entity';
 
 @Injectable()
 export class OrderService {
   public constructor(
     @InjectRepository(Order)
     private readonly orderRepository: Repository<Order>,
+    @InjectRepository(Book)
+    private readonly bookRepository: Repository<Book>,
   ) {}
 
-  public async getAllUserOrders(userId: number): Promise<Order[]> {
+  public async getAllUserOrders(userId: number): Promise<OrderBook[]> {
     try {
-      return await this.orderRepository.find({
+      const orders = await this.orderRepository.find({
         where: {
           userId: userId,
         },
       });
+      const res = [];
+      for (const order of orders) {
+        const book = await this.bookRepository.findOne({
+          where: {
+            bookId: order.bookId,
+          },
+        });
+        res.push({
+          iamgeUrl: book.imageUrl,
+          date: order.date,
+          numberOfElements: order.numberOfElements,
+          name: book.name,
+        });
+      }
+      return res;
     } catch (error) {}
   }
 
