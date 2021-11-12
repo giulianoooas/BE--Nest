@@ -25,7 +25,7 @@ export class OrderController {
   @Patch('decrease')
   public async decreaseOrder(
     @Body() body: { bookId: number; userId: number },
-  ): Promise<void> {
-    this.orderService.decreaseOrderNumber(body.bookId, body.userId);
+  ): Promise<boolean> {
+    return this.orderService.decreaseOrderNumber(body.bookId, body.userId);
   }
 }
