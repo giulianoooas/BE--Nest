@@ -105,7 +105,7 @@ export class OrderService {
   public async decreaseOrderNumber(
     bookId: number,
     userId: number,
-  ): Promise<boolean> {
+  ): Promise<void> {
     try {
       const order = await this.getOrder(bookId, userId);
       if (order.numberOfElements > 1) {
@@ -116,10 +116,8 @@ export class OrderService {
           date: new Date().toString(),
           numberOfElements: order.numberOfElements - 1,
         });
-        return true;
       } else {
         await this.orderRepository.remove(order);
-        return false;
       }
     } catch (error) {}
   }
