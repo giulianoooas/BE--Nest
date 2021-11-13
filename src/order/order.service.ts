@@ -35,6 +35,7 @@ export class OrderService {
           name: book.name,
           bookId: book.bookId,
           author: book.author,
+          price: book.price,
         });
       }
       return res;
