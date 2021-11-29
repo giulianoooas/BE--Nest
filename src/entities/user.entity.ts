@@ -7,9 +7,6 @@ export class User{
     @PrimaryGeneratedColumn('increment')
     userId: number;
 
-    @Column({default:false})
-    isAdmin: boolean;
-
     @Column()
     email: string;
 
