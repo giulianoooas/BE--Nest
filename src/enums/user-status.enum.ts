@@ -2,5 +2,5 @@
 export enum UserStatus {
   LIBRARY = 'library',
   CUSTOMER = 'customer',
-  ADMIN = 'ADMIN',
+  ADMIN = 'admin',
 }
