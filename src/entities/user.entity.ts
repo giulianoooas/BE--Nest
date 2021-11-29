@@ -7,7 +7,7 @@ export class User{
     @PrimaryGeneratedColumn('increment')
     userId: number;
 
-    @Column()
+    @Column({unique:true})
     email: string;
 
     @Column()
