@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+import { UserStatus } from "../enums/user-status.enum";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -15,6 +16,6 @@ export class User{
     @Column()
     password: string;
 
-    @Column({default: false})
-    isLibrary: boolean;
+    @Column({default: UserStatus.CUSTOMER})
+    userStatus: UserStatus;
 }
