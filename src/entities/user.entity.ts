@@ -19,6 +19,6 @@ export class User{
     @Column({nullable:true})
     logoUrl: string;
 
-    @Column({nullable:true})
+    @Column({unique:true})
     nickname: string;
 }
