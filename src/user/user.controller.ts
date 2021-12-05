@@ -38,4 +38,12 @@ export class UserController {
   public async deleteUser(@Param('userId') userId: number): Promise<void> {
     return this.userService.deleteUser(userId);
   }
+
+  @Post(':userId')
+  public async changeLogo(
+    @Param('userId') userId: string,
+    @Body() logoUrl: string,
+  ): Promise<void> {
+    this.userService.changeLogo(userId, logoUrl);
+  }
 }

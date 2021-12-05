@@ -43,4 +43,10 @@ export class UserService {
       }
     }
   }
+
+  public async changeLogo(userId: string, logoUrl: string): Promise<void> {
+    const user = await this.userRepository.findOne(userId);
+    user.logoUrl = logoUrl;
+    await this.userRepository.save(user);
+  }
 }

@@ -15,4 +15,7 @@ export class User{
 
     @Column({default: UserStatus.CUSTOMER})
     userStatus: UserStatus;
+
+    @Column({nullable:true})
+    logoUrl: string;
 }
