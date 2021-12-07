@@ -16,7 +16,10 @@ export class UserService {
     try {
       const users = await this.userRepository.find();
       for (const user of users) {
-        if (user.email === userDTO.email) {
+        if (
+          user.email === userDTO.email ||
+          user.nickname === userDTO.nickname
+        ) {
           return null;
         }
       }
@@ -26,6 +29,15 @@ export class UserService {
 
   public async updateUser(userDTO: UserDTO): Promise<User | null> {
     try {
+      const users = await this.userRepository.find();
+      for (const user of users) {
+        if (
+          user.userId !== userDTO.userId &&
+          (user.email === userDTO.email || user.nickname === userDTO.nickname)
+        ) {
+          return null;
+        }
+      }
       return await this.userRepository.save(userDTO);
     } catch (error) {}
   }
