@@ -31,7 +31,7 @@ export class UserController {
 
   @Put(':userId')
   public async updateUser(@Body() user: UserDTO): Promise<User | null> {
-    return this.userService.createUpdateUser(user);
+    return this.userService.updateUser(user);
   }
 
   @Delete(':userId/delete')

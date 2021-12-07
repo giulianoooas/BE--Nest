@@ -24,6 +24,12 @@ export class UserService {
     } catch (error) {}
   }
 
+  public async updateUser(userDTO: UserDTO): Promise<User | null> {
+    try {
+      return await this.userRepository.save(userDTO);
+    } catch (error) {}
+  }
+
   public async deleteUser(userId: number): Promise<void> {
     await this.userRepository.delete(userId);
     await this.orderService.deleteAllUserOrders(userId);
