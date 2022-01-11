@@ -4,6 +4,6 @@ import { PricePredictService } from './price-predict.service';
 
 @Module({
   controllers: [PricePredictController],
-  providers: [PricePredictService]
+  providers: [PricePredictService],
 })
 export class PricePredictModule {}
