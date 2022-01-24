@@ -30,6 +30,11 @@ export class BookController {
     return this.bookService.getBookById(bookId);
   }
 
+  @Get(':bookId/see-also')
+  async getSeeAlsoBooks(@Param('bookId') bookId: number): Promise<Book[]> {
+    return this.bookService.getSeeAlso(bookId);
+  }
+
   @Get(':bookId/exists')
   async existsBook(@Param('bookId') bookId: number): Promise<boolean> {
     return this.bookService.existsBook(bookId);

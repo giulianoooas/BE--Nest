@@ -63,4 +63,23 @@ export class BookService {
       return await this.bookRepository.save(book);
     } catch (error) {}
   }
+
+  public async getSeeAlso(bookId: number): Promise<Book[]> {
+    const books = await this.bookRepository.find();
+    books.sort((a, b) => {
+      return a.price - b.price;
+    });
+
+    const seeAlsoBooks: Book[] = [];
+    for (const book of books) {
+      if (seeAlsoBooks.length === 3) {
+        break;
+      }
+      if (book.bookId != bookId) {
+        seeAlsoBooks.push(book);
+      }
+    }
+
+    return seeAlsoBooks;
+  }
 }
