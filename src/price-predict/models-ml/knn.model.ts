@@ -27,15 +27,19 @@ export class KnnUnsupervised {
       return a.distance - b.distance;
     });
 
-    const length = Math.min(data.length, 3);
+    let length = 0;
     const books: Book[] = [];
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < data.length; i++) {
+      if (length == 3){
+          break;
+      }
       if (bookId == data[i].bookId) {
         continue;
       }
       for (const book of this.trainingData) {
         if (book.bookId === data[i].bookId) {
           books.push(book);
+          length ++;
         }
       }
     }
