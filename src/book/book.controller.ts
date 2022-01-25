@@ -56,10 +56,7 @@ export class BookController {
   }
 
   @Put(':bookId/edit')
-  async updateBook(
-    @Body() book: BookDTO,
-    @Param('bookId') bookId: number,
-  ): Promise<Book> {
+  async updateBook(@Body() book: BookDTO): Promise<Book> {
     return this.bookService.createUpdateBook(book);
   }
 }
