@@ -30,7 +30,7 @@ export class KnnUnsupervised {
     const length = Math.min(data.length, 3);
     const books: Book[] = [];
     for (let i = 0; i < length; i++) {
-      if (bookId === data[i].bookId) {
+      if (bookId == data[i].bookId) {
         continue;
       }
       for (const book of this.trainingData) {
