@@ -9,10 +9,17 @@ import { CategoryService } from './category.service';
 import { BookService } from '../book/book.service';
 import { OrderService } from '../order/order.service';
 import { CommentService } from '../comment/comment.service';
+import { KnnUnsupervised } from 'src/price-predict/models-ml/knn.model';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Category, Book, CommentBook, Order])],
   controllers: [CategoryController],
-  providers: [CategoryService, BookService, OrderService, CommentService],
+  providers: [
+    CategoryService,
+    BookService,
+    OrderService,
+    CommentService,
+    KnnUnsupervised,
+  ],
 })
 export class CategoryModule {}

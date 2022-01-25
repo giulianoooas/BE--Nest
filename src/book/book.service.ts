@@ -6,6 +6,7 @@ import { Book } from '../entities/book.entity';
 import { Category } from '../entities/category.entity';
 import { Repository } from 'typeorm';
 import { OrderService } from '../order/order.service';
+import { KnnUnsupervised } from 'src/price-predict/models-ml/knn.model';
 
 @Injectable()
 export class BookService {
@@ -15,6 +16,7 @@ export class BookService {
     private readonly categoryRepository: Repository<Category>,
     @Inject(CommentService) private readonly commentService: CommentService,
     @Inject(OrderService) private readonly orderService: OrderService,
+    @Inject(KnnUnsupervised) private readonly knnUnsupervised: KnnUnsupervised,
   ) {}
 
   public async getAllBooks(): Promise<Book[]> {
@@ -66,20 +68,7 @@ export class BookService {
 
   public async getSeeAlso(bookId: number): Promise<Book[]> {
     const books = await this.bookRepository.find();
-    books.sort((a, b) => {
-      return a.price - b.price;
-    });
-
-    const seeAlsoBooks: Book[] = [];
-    for (const book of books) {
-      if (seeAlsoBooks.length === 3) {
-        break;
-      }
-      if (book.bookId != bookId) {
-        seeAlsoBooks.push(book);
-      }
-    }
-
-    return seeAlsoBooks;
+    this.knnUnsupervised.setTrainingData(books);
+    return this.knnUnsupervised.predictBooks(bookId);
   }
 }
