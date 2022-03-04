@@ -10,6 +10,7 @@ import { CommentBook } from './entities/comment.entity';
 import { UserModule } from './user/user.module';
 import { OrderModule } from './order/order.module';
 import { PricePredictModule } from './price-predict/price-predict.module';
+import { ForumModule } from './forum/forum.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { PricePredictModule } from './price-predict/price-predict.module';
     UserModule,
     OrderModule,
     PricePredictModule,
+    ForumModule,
   ],
   controllers: [],
   providers: [],
