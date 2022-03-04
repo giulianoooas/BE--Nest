@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Book } from './book.entity';
 import { ForumComment } from './forum-comment.entity';
 
 @Entity('forum-texts')
