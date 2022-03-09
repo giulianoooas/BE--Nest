@@ -68,10 +68,13 @@ export class UserService {
     await this.userRepository.save(user);
   }
 
-  public async getUserInfo(userId: number): Promise<string | null> {
+  public async getUserInfo(userId: number): Promise<{
+    name: string;
+    imageSrc: string;
+  } | null> {
     const user = await this.userRepository.findOne(userId);
     if (user) {
-      return user.logoUrl;
+      return { imageSrc: user.logoUrl, name: user.nickname };
     }
     return null;
   }

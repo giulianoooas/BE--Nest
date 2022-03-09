@@ -49,9 +49,10 @@ export class UserController {
   }
 
   @Get(':userId/info')
-  public async getUserInfo(
-    @Param('userId') userId: number,
-  ): Promise<string | null> {
+  public async getUserInfo(@Param('userId') userId: number): Promise<{
+    name: string;
+    imageSrc: string;
+  } | null> {
     return this.userService.getUserInfo(userId);
   }
 }
