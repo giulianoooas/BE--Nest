@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  Get,
   Inject,
   Param,
   Post,
@@ -45,5 +46,12 @@ export class UserController {
     @Body() logoUrl: string,
   ): Promise<void> {
     this.userService.changeLogo(userId, logoUrl);
+  }
+
+  @Get(':userId/info')
+  public async getUserInfo(
+    @Param('userId') userId: number,
+  ): Promise<string | null> {
+    return this.userService.getUserInfo(userId);
   }
 }

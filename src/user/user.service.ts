@@ -67,4 +67,12 @@ export class UserService {
     user.logoUrl = logoUrl;
     await this.userRepository.save(user);
   }
+
+  public async getUserInfo(userId: number): Promise<string | null> {
+    const user = await this.userRepository.findOne(userId);
+    if (user) {
+      return user.logoUrl;
+    }
+    return null;
+  }
 }
