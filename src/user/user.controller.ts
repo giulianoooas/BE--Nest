@@ -49,14 +49,6 @@ export class UserController {
     this.userService.changeLogo(userId, logoUrl);
   }
 
-  @Get(':userId/info')
-  public async getUserInfo(@Param('userId') userId: number): Promise<{
-    name: string;
-    imageSrc: string;
-  } | null> {
-    return this.userService.getUserInfo(userId);
-  }
-
   @Get('all/info')
   public async getUsersInfo(@Query() userIds: number[]): Promise<
     {
@@ -65,5 +57,13 @@ export class UserController {
     }[]
   > {
     return this.userService.getUsersInfo(userIds);
+  }
+
+  @Get(':userId/info')
+  public async getUserInfo(@Param('userId') userId: number): Promise<{
+    name: string;
+    imageSrc: string;
+  } | null> {
+    return this.userService.getUserInfo(userId);
   }
 }
