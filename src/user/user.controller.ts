@@ -7,6 +7,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { UserDTO } from '../dto/user.dto';
 import { User } from '../entities/user.entity';
@@ -54,5 +55,15 @@ export class UserController {
     imageSrc: string;
   } | null> {
     return this.userService.getUserInfo(userId);
+  }
+
+  @Get('all/info')
+  public async getUsersInfo(@Query() userIds: number[]): Promise<
+    {
+      name: string;
+      imageSrc: string;
+    }[]
+  > {
+    return this.userService.getUsersInfo(userIds);
   }
 }

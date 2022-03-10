@@ -78,4 +78,20 @@ export class UserService {
     }
     return null;
   }
+
+  public async getUsersInfo(userIds: number[]): Promise<
+    {
+      name: string;
+      imageSrc: string;
+    }[]
+  > {
+    const res = [];
+    for (const userId of userIds) {
+      const user = await this.getUserInfo(userId);
+      if (user) {
+        res.push(user);
+      }
+    }
+    return res;
+  }
 }
