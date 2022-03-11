@@ -83,13 +83,14 @@ export class UserService {
     {
       name: string;
       imageSrc: string;
+      userId: number;
     }[]
   > {
     const res = [];
     for (const userId of userIds) {
       const user = await this.getUserInfo(userId);
       if (user) {
-        res.push(user);
+        res.push({ name: user.name, imageSrc: user.imageSrc, userId });
       }
     }
     return res;

@@ -54,6 +54,7 @@ export class UserController {
     {
       name: string;
       imageSrc: string;
+      userId: number;
     }[]
   > {
     return this.userService.getUsersInfo(userIds);
