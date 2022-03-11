@@ -49,8 +49,8 @@ export class UserController {
     this.userService.changeLogo(userId, logoUrl);
   }
 
-  @Get('all/info')
-  public async getUsersInfo(@Query() userIds: number[]): Promise<
+  @Post('all/info')
+  public async getUsersInfo(@Body() userIds: number[]): Promise<
     {
       name: string;
       imageSrc: string;
