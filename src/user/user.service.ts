@@ -95,4 +95,20 @@ export class UserService {
     }
     return res;
   }
+
+  public async getUserNameId(): Promise<
+    {
+      name: string;
+      userId: number;
+    }[]
+  > {
+    const res = [];
+    const users = await this.userRepository.find();
+    for (const user of users) {
+      if (user) {
+        res.push({ name: user.nickname, userId: user.userId });
+      }
+    }
+    return res;
+  }
 }

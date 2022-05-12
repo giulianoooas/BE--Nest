@@ -67,4 +67,14 @@ export class UserController {
   } | null> {
     return this.userService.getUserInfo(userId);
   }
+
+  @Get(':userId/name-id')
+  public async getUserNameId(@Param('userId') userId: number): Promise<
+    {
+      name: string;
+      id: number;
+    }[]
+  > {
+    return this.userService.getUserNameId(userId);
+  }
 }
