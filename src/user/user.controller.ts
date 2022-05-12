@@ -68,13 +68,13 @@ export class UserController {
     return this.userService.getUserInfo(userId);
   }
 
-  @Get(':userId/name-id')
-  public async getUserNameId(@Param('userId') userId: number): Promise<
+  @Get('name-id')
+  public async getUserNameId(): Promise<
     {
       name: string;
-      id: number;
+      userId: number;
     }[]
   > {
-    return this.userService.getUserNameId(userId);
+    return this.userService.getUserNameId();
   }
 }
