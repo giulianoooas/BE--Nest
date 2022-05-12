@@ -4,6 +4,7 @@ import { User } from '../entities/user.entity';
 import { Repository } from 'typeorm';
 import { UserDTO } from '../dto/user.dto';
 import { OrderService } from '../order/order.service';
+import { UserStatus } from '../enums/user-status.enum';
 
 @Injectable()
 export class UserService {
@@ -105,7 +106,7 @@ export class UserService {
     const res = [];
     const users = await this.userRepository.find();
     for (const user of users) {
-      if (user) {
+      if (user.userStatus === UserStatus.CUSTOMER) {
         res.push({ name: user.nickname, userId: user.userId });
       }
     }
